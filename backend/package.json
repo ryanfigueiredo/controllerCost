@@ -1,0 +1,28 @@
+{
+  "name": "backend2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "dependencies": {
+    "mysql2": "^1.6.5"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "forest-express-sequelize": "^2.17.2",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.10",
+    "pg": "^7.8.1",
+    "prettier": "^1.16.4",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
+    "sequelize-paginate": "^1.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
