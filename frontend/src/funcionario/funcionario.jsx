@@ -19,7 +19,7 @@ export default class Funcionario extends Component {
     }
 
     refresh(){ 
-        axios.get(`${URLFuncionario}s`)
+        axios.get(`${URLFuncionario}`)
             .then(resp => this.setState({...this.state, nome: '', list: resp.data}))
     }
 
