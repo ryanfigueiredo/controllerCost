@@ -15,8 +15,24 @@ module.exports = {
     },
 
     async readAll(req, res) {
+        const {
+            nome = '',
+            departamento = '',
+        } = req.query;
+        const options = {
+            attributes: ['id', 'nome'],
+            include: [
+                {
+                    model: Departamento,
+                    attributes: ['nome', 'id'],
+                    where: { nome: { [Op.like]: `%${departamento}%` } }
+                },
+            ],
+            where: { nome: { [Op.like]: `%${nome}%` } },
+            order: [['nome', 'DESC']],
+        };
         try {
-            const funcionario = await Funcionario.findAll();
+            const funcionario = await Funcionario.findAll(options);
             return res.json(funcionario);
         } catch (error) {
             return res.json(error);
@@ -43,30 +59,6 @@ module.exports = {
         } catch (error) {
             res.json(error);
         }
-    },
-
-    async searchByName(req, res) {
-        const {
-            nome = '',
-            departamento = '',
-        } = req.query;
-        const options = {
-            attributes: ['id', 'nome'],
-            include: [
-                {
-                    model: Departamento,
-                    attributes: ['nome', 'id'],
-                    where: { nome: { [Op.like]: `%${departamento}%` } }
-                },
-            ],
-            where: { nome: { [Op.like]: `%${nome}%` } },
-            order: [['nome', 'DESC']],
-        };
-        try {
-            const funcionario = await Funcionario.findAll(options);
-            return res.json(funcionario);
-        } catch (error) {
-            return res.json(error);
-        }
     }
+    
 }

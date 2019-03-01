@@ -14,10 +14,9 @@ route.get('/departamento/search/:nome', departamentoController.searchByName);
 
 
 route.post('/funcionario', funcionarioController.create);
-route.get('/funcionario/', funcionarioController.readAll);
 route.put('/funcionario/:id', funcionarioController.update);
 route.delete('/funcionario/:id', funcionarioController.delete);
-route.get('/funcionarios', funcionarioController.searchByName);
+route.get('/funcionario', funcionarioController.readAll);
 
 
 
