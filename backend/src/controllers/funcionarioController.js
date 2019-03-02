@@ -15,21 +15,18 @@ module.exports = {
     },
 
     async readAll(req, res) {
-        const {
-            nome = '',
-            departamento = '',
-        } = req.query;
+        const { nomeDepartamento = '', departamento = '', } = req.query;
         const options = {
-            attributes: ['id', 'nome'],
+            attributes: ['id', 'nomeFuncionario', 'departamentoId'],
             include: [
                 {
                     model: Departamento,
-                    attributes: ['nome', 'id'],
-                    where: { nome: { [Op.like]: `%${departamento}%` } }
+                    attributes: ['nomeDepartamento', 'id'],
+                    where: { nomeDepartamento: { [Op.like]: `%${departamento}%` } }
                 },
             ],
-            where: { nome: { [Op.like]: `%${nome}%` } },
-            order: [['nome', 'DESC']],
+            where: { nomeFuncionario: { [Op.like]: `%${nomeDepartamento}%` } },
+            order: [['nomeFuncionario', 'DESC']],
         };
         try {
             const funcionario = await Funcionario.findAll(options);
@@ -59,6 +56,26 @@ module.exports = {
         } catch (error) {
             res.json(error);
         }
+    },
+
+    async searchByName(req, res) {
+        const { nomeDepartamento = '', departamento = '', } = req.query;
+        const { nomeFuncionario } = req.params
+        const options = {
+            include: [{
+                model: Departamento,
+                attributes: ['nomeDepartamento', 'id'],
+                where: { nomeDepartamento: { [Op.like]: `%${departamento}%` } }
+            }],
+            where: { nomeFuncionario: { [Op.like]: `%${nomeFuncionario}%` } },
+            order: [['nomeFuncionario', 'DESC']]
+        }
+        try {
+            const funcionario = await Funcionario.findAll(options)
+            return res.json(funcionario);
+        } catch (error) {
+            return res.json(error);
+        }
     }
-    
+
 }

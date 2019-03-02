@@ -37,9 +37,9 @@ module.exports = {
   },
 
   async searchByName(req, res) {
-    const { nome } = req.params
+    const { nomeDepartamento } = req.params
     try {
-      const departamento = await Departamento.findAll({ where: { nome: { [Op.like]: `%${nome}%` } } })
+      const departamento = await Departamento.findAll({ where: { nomeDepartamento: { [Op.like]: `%${nomeDepartamento}%` } } })
       return res.json(departamento);
     } catch (error) {
       return res.json(error);

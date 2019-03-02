@@ -15,17 +15,17 @@ module.exports = {
     },
 
     async readAll(req, res) {
-        const { nome = '', funcionario = '' } = req.query;
+        const { nomeFuncionario = '', funcionario = '' } = req.query;
         const options = {
             attributes: ['id', 'descricao', 'valor'],
             include: [
                 {
                     model: Funcionario,
-                    attributes: ['nome', 'id'],
-                    where: { nome: { [Op.like]: `%${funcionario}%` } }
+                    attributes: ['nomeFuncionario', 'id'],
+                    where: { nomeFuncionario: { [Op.like]: `%${funcionario}%` } }
                 },
             ],
-            where: { descricao: { [Op.like]: `%${nome}%` } },
+            where: { descricao: { [Op.like]: `%${nomeFuncionario}%` } },
             order: [['descricao', 'DESC']],
         };
         try {
@@ -69,15 +69,15 @@ module.exports = {
     },
 
     async searchByDescription(req, res) {
-        const { nome = '', funcionario = '' } = req.query;
+        const { nomeFuncionario = '', funcionario = '' } = req.query;
         const { descricao } = req.params
         const options = {
             attributes: ['id', 'descricao', 'valor'],
             include: [
                 {
                     model: Funcionario,
-                    attributes: ['nome', 'id'],
-                    where: { nome: { [Op.like]: `%${funcionario}%` } }
+                    attributes: ['nomeFuncionario', 'id'],
+                    where: { nomeFuncionario: { [Op.like]: `%${funcionario}%` } }
                 },
             ],
             where: { descricao: { [Op.like]: `%${descricao}%` } },
@@ -93,15 +93,15 @@ module.exports = {
     },
 
     async searchByFuncionarioID(req, res) {
-        const { nome = '', funcionario = '' } = req.query;
+        const { nomeFuncionario = '', funcionario = '' } = req.query;
         const { FuncionarioID } = req.params;
         const options = {
             attributes: ['id', 'descricao', 'valor', 'funcionarioId'],
             include: [
                 {
                     model: Funcionario,
-                    attributes: ['nome', 'id'],
-                    where: { nome: { [Op.like]: `%${funcionario}%` } }
+                    attributes: ['nomeFuncionario', 'id'],
+                    where: { nomeFuncionario: { [Op.like]: `%${funcionario}%` } }
                 },
             ],
             where: { funcionarioId: { [Op.like]: `%${FuncionarioID}%` } },
