@@ -1,20 +1,22 @@
 import React from 'react'
 import IconButton from '../utils/iconButton'
+import { connect } from 'react-redux'
+import { remove } from './funcionarioActions'
+import { bindActionCreators } from 'redux'
 
-export default props => {
 
+const ListaFuncionario = props => {
     const renderRows = () => {
         const list = props.list || []
-        return list.map(funcionario =>(
+        return list.map(funcionario => (
             <tr key={funcionario.id}>
-                <td>{funcionario.nome}</td>
+                <td>{funcionario.nomeFuncionario}</td>
                 <td>
-                    {funcionario.Departamento.nome}
+                    {funcionario.Departamento.nomeDepartamento}
                 </td>
-
                 <td>
                     <IconButton style='danger' icon='trash-o'
-                        onClick={() => props.handleRemove(funcionario)}/>
+                        onClick={() => props.remove(funcionario)} />
                 </td>
             </tr>
         ))
@@ -35,3 +37,7 @@ export default props => {
         </table>
     )
 }
+
+const mapStateToProps = state => ({ list: state.funcionario.list })
+const mapDispatchToProps = (dispatch) => bindActionCreators({ remove }, dispatch)
+export default connect(mapStateToProps, mapDispatchToProps)(ListaFuncionario)

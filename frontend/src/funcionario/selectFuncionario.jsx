@@ -5,7 +5,7 @@ export default props => (
         <select id="selectFuncionario" className="form-control"
             onChange={props.handleChangeFuncionário}>
             {props.data.map(funcionario => <option key={funcionario.id}
-                value={funcionario.id}>{funcionario.nome}</option>)}
+                value={funcionario.id}>{funcionario.nomeFuncionario}</option>)}
         </select>
     </div>
 )

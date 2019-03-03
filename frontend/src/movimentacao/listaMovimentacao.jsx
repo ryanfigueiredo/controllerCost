@@ -9,7 +9,7 @@ export default props => {
             <tr key={movimentacao.id}>
                 <td>{movimentacao.descricao}</td>
                 <td>
-                    {movimentacao.Funcionario.nome}
+                    {movimentacao.Funcionario.nomeFuncionario}
                 </td>
                 <td>
                     R$ {movimentacao.valor}

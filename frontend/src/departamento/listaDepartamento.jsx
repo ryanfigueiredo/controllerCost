@@ -3,14 +3,12 @@ import {connect} from 'react-redux'
 import IconButton from '../utils/iconButton'
 import {bindActionCreators} from 'redux'
 import {remove} from './departamentoActions'
-
 const ListaDepartamento = props => {
-
     const renderRows = () => {
         const list = props.list || []
         return list.map(departamento =>(
             <tr key={departamento.id}>
-                <td>{departamento.nome}</td>
+                <td>{departamento.nomeDepartamento}</td>
                 <td>
                     <IconButton style='danger' icon='trash-o'
                         onClick={() => props.remove(departamento)}/>

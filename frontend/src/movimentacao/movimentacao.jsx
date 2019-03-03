@@ -4,7 +4,7 @@ import axios from 'axios'
 import PageHeader from '../utils/pageHeader'
 import FormularioMovimentacao from './formularioMovimentacao'
 import ListaMovimentacao from './listaMovimentacao'
-import {URLFuncionario, URLMovimentacao} from '../utils/URLS'
+import { URLFuncionario, URLMovimentacao, movimentacoes } from '../utils/URLS'
 
 export default class Funcionario extends Component {
     constructor(props) {
@@ -27,6 +27,7 @@ export default class Funcionario extends Component {
             .then(resp => this.setState({ ...this.state, descricao, valor: '', list: resp.data }))
     }
 
+    // evento para buscar pelo funcionario no selectFuncionario
     handleChangeFuncionário(e) {
         const funcionarioId = e.target.value
         axios.get(`${URLMovimentacao}/searchByFuncionarioID/${funcionarioId}`)
@@ -35,9 +36,12 @@ export default class Funcionario extends Component {
 
     handleSearch() {
         this.refresh(this.state.descricao)
+        //const descricaoId = document.getElementById("descricao").value
+        //console.log(this.state.movimentacoes)
+        //const NovoArray = this.state.movimentacoes.filter()
     }
 
-    handleClear(){
+    handleClear() {
         this.refresh()
     }
 
