@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 import { search } from '../departamento/departamentoActions'
 
 
@@ -26,8 +26,6 @@ class SelectDepartamento extends Component {
     }
 }
 
-
-
-const mapStateToProps = state => ({list: state.departamento.list})
-const mapDispatchToProps = (dispatch) => bindActionCreators({search}, dispatch)
+const mapStateToProps = state => ({ list: state.departamento.list })
+const mapDispatchToProps = (dispatch) => bindActionCreators({ search }, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(SelectDepartamento)

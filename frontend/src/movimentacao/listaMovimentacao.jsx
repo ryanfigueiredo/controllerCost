@@ -1,8 +1,10 @@
 import React from 'react'
 import IconButton from '../utils/iconButton'
+import { connect } from 'react-redux'
+import { remove } from './movimentacaoActions'
+import { bindActionCreators } from 'redux'
 
-export default props => {
-
+const ListaMovimentacao = props => {
     const renderRows = () => {
         const list = props.list || []
         return list.map(movimentacao => (
@@ -16,7 +18,7 @@ export default props => {
                 </td>
                 <td>
                     <IconButton style='danger' icon='trash-o'
-                        onClick={() => props.handleRemove(movimentacao)} />
+                        onClick={() => props.remove(movimentacao)} />
                 </td>
             </tr>
         ))
@@ -38,3 +40,10 @@ export default props => {
         </table>
     )
 }
+
+const mapStateToProps = state =>
+    ({ list: state.movimentacao.list })
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({ remove }, dispatch)
+export default connect(mapStateToProps,
+    mapDispatchToProps)(ListaMovimentacao)

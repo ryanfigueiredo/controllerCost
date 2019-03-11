@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { remove } from './funcionarioActions'
 import { bindActionCreators } from 'redux'
 
-
 const ListaFuncionario = props => {
     const renderRows = () => {
         const list = props.list || []
@@ -38,6 +37,9 @@ const ListaFuncionario = props => {
     )
 }
 
-const mapStateToProps = state => ({ list: state.funcionario.list })
-const mapDispatchToProps = (dispatch) => bindActionCreators({ remove }, dispatch)
-export default connect(mapStateToProps, mapDispatchToProps)(ListaFuncionario)
+const mapStateToProps = state =>
+    ({ list: state.funcionario.list })
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators({ remove }, dispatch)
+export default connect(mapStateToProps,
+    mapDispatchToProps)(ListaFuncionario)
