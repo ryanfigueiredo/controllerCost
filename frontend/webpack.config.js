@@ -52,9 +52,6 @@ module.exports = {
         extensions: [
             '.js',
             '.jsx'
-        ],
-        // alias: {
-        //     modules: __dirname + '/node_modules'
-        // }
+        ]
     }
 }
